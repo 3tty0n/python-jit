@@ -1,0 +1,7 @@
+#+TITLE: benchmark for numba
+
+- 5.56967401505
+  - python mandel_nonjit.py  6.38s user 0.18s system 80% cpu 8.106 total
+
+- 0.244273900986
+  - python mandel_jit.py  0.89s user 0.18s system 41% cpu 2.580 total
