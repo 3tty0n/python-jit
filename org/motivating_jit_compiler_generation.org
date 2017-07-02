@@ -1,0 +1,50 @@
+#+TITLE: Motivating JIT Compiler Generation
+
+* Motivation
+
+** Overview
+
+*** Problem
+
+- writing an interpreter for a complex dynamic language like Python is difficult
+- we want to write a JIT compiler too
+
+*** Solution
+
+- use the interpreter for Python is written in RPython
+  - we turn it _automatically_ into a JIT compiler for Python
+
+*** Goal
+
+- support _all_ Python features
+  - for example, now cannot use type hinting in PyPy
+
+* Tracing JIT Compiler
+
+** Rules to consider when tackling the problem of compiler optimization
+
+- The Pareto principle (80-20 rule)
+  - when executing a program most of the time will be spent in few regions, called hot-spots.
+- The Fast Path principle
+  - fast path
+    - handle the most commom cases (spend much time)
+      - need highly optimizaion
+  - slow path
+    - handle remaining cases
+      - not required to be paticularly efficient
+
+** The desighn of JIT compiler
+
+*** Policy
+
+- programs spend most of their runtime in loops -> hot loops
+- several iterations of the same loop are likely to take similar code paths
+
+*** Approach
+
+- generate machine code only for the hot loop
+
+** Phases of execution
+
+(Add the figure showing about the phase of excecition here)
+
